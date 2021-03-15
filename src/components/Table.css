@@ -1,0 +1,97 @@
+.main-table {
+  display: flex;
+  flex-direction: column;
+}
+.table-row_active {
+  cursor: pointer;
+}
+.main-table__buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+.main-table__buttons button {
+  height: 30px;
+  margin-right: 20px;
+  outline: none;
+  border: none;
+}
+.main-table__buttons button:hover {
+  cursor: pointer;
+}
+table {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  border-radius: 10px;
+  border-spacing: 0;
+  text-align: center;
+  width: 1000px;
+}
+th {
+  background: #bcdceb;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+}
+th, td {
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  border-color: white;
+}
+th:first-child, td:first-child {
+  text-align: left;
+}
+th:first-child {
+  border-top-left-radius: 10px;
+}
+th:last-child {
+  border-top-right-radius: 10px;
+  border-right: none;
+}
+td {
+  padding: 10px 20px;
+  background: #f6ecc3;
+}
+tr:last-child td:first-child {
+  border-radius: 0 0 0 10px;
+}
+tr:last-child td:last-child {
+  border-radius: 0 0 10px 0;
+}
+tr td:last-child {
+  border-right: none;
+}
+
+.main-table__cancel-button {
+  width: 100px;
+  background: rgb(255, 123, 123);
+  transition: 0.2s;
+}
+.main-table__create-button {
+  width: 70px;
+  background: rgb(43, 255, 89);
+  transition: 0.2s;
+}
+
+.main-table__cancel-button:hover {
+  box-shadow: 0 0 15px rgb(255, 123, 123);
+  transition: 0.2s;
+}
+.main-table__create-button:hover {
+  box-shadow: 0 0 15px rgb(43, 255, 89);
+  transition: 0.2s;
+}
+
+@media screen and (max-width:1010px) {
+  table {
+    width: 840px;
+  }
+  td {
+    padding: 0px 8px;
+  }
+}
+@media screen and (max-width:850px) {
+  .main-table {
+    overflow-y: scroll;
+  }
+}

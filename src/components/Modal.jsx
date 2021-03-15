@@ -3,6 +3,7 @@ import products from '../data/product'
 import { connect } from 'react-redux'
 import { createNewCheckArray } from '../helpers/functions'
 import { addNewCheck } from '../redux/reducers/cheques-reducers'
+import './Modal.css'
 
 let Modal = ({
   active,

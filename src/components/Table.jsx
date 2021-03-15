@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getCheques, deleteOneCheque, changeDeletingStatus } from '../redux/reducers/cheques-reducers'
 import { chequeType, chequeStatus, paysSum, productCount, productsName, dateFormat } from '../helpers/functions'
 import Modal from './Modal'
+import './Table.css'
 
 let Table = ({
   cheques,
@@ -79,14 +80,13 @@ let Table = ({
       </table>
 
       <div className='main-table__buttons'>
-        <button onClick={deleteHandler}>{deleteButton.text}</button>
-        <button onClick={createHandler}>Create</button>
+        <button className='main-table__cancel-button' onClick={deleteHandler}>{deleteButton.text}</button>
+        <button className='main-table__create-button' onClick={createHandler}>Create</button>
       </div>
       {createActive && <Modal active={createActive} update={updateModalStatus} />}
     </div>
   )
 }
-
 
 
 const mapStateToProps = state => {

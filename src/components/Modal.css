@@ -1,0 +1,123 @@
+.modal_active {
+  display: block !important;
+}
+
+.fixed-overlay {
+  position: fixed;
+  overflow: auto;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.fixed-overlay_modal {
+  text-align: center;
+  white-space: nowrap;
+}
+
+.fixed-overlay_modal::after {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 100%;
+  content: '';
+}
+
+.modal {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.modal-container {
+  margin: 50px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  white-space: normal;
+  background: linear-gradient(
+    rgb(63, 127, 255),
+    rgb(0, 62, 187));
+  color: #000;
+  border-radius: 15px;
+}
+.close {
+  color: rgb(253, 17, 17);
+  float: right;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 24px;
+}
+.modal-form input, .modal-form select {
+  height: 40px;
+  font-size: 18px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  border: none;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  padding-left: 10px;
+}
+.modal-form label {
+  margin-bottom: 5px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.modal-form__buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+}
+.modal-form__buttons button {
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+.modal-form__buttons button:hover {
+  cursor: pointer;
+}
+.cancel-button {
+  margin-right: 20px;
+  width: 60px;
+  background: rgb(255, 123, 123);
+  transition: 0.2s;
+}
+.cancel-button:hover {
+  box-shadow: 0 0 15px rgb(255, 123, 123);
+  transition: 0.2s;
+}
+.buy-button {
+  width: 100px;
+  background: rgb(43, 255, 89);
+  transition: 0.2s;
+}
+.buy-button:hover {
+  box-shadow: 0 0 15px rgb(43, 255, 89);
+  transition: 0.2s;
+}
+
+@media screen and (max-width: 520px) {
+  
+}
