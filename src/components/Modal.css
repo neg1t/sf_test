@@ -44,8 +44,9 @@
   color: #000;
   border-radius: 15px;
 }
+
 .close {
-  color: rgb(253, 17, 17);
+  color: black;
   float: right;
   font-size: 32px;
   font-weight: bold;
@@ -53,7 +54,7 @@
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: rgb(253, 17, 17);
   text-decoration: none;
   cursor: pointer;
 }
@@ -64,6 +65,14 @@
   flex-direction: column;
   font-size: 24px;
 }
+
+.modal-form__errors {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  color: rgb(255, 64, 255);
+}
+
 .modal-form input, .modal-form select {
   height: 40px;
   font-size: 18px;
@@ -76,48 +85,74 @@
   margin-bottom: 25px;
   padding-left: 10px;
 }
+
 .modal-form label {
   margin-bottom: 5px;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
+  -webkit-appearance: none;
 }
+
 .modal-form__buttons {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-top: 20px;
 }
+
 .modal-form__buttons button {
-  height: 30px;
+  width: 120px;
+  font-size: 20px;
+  font-family: 'Roboto Bold';
+  height: 40px;
   border: none;
   border-radius: 5px;
   outline: none;
 }
+
 .modal-form__buttons button:hover {
   cursor: pointer;
 }
+
 .cancel-button {
   margin-right: 20px;
-  width: 60px;
   background: rgb(255, 123, 123);
   transition: 0.2s;
 }
+
 .cancel-button:hover {
   box-shadow: 0 0 15px rgb(255, 123, 123);
   transition: 0.2s;
 }
+
 .buy-button {
-  width: 100px;
   background: rgb(43, 255, 89);
   transition: 0.2s;
 }
+
 .buy-button:hover {
   box-shadow: 0 0 15px rgb(43, 255, 89);
   transition: 0.2s;
 }
 
 @media screen and (max-width: 520px) {
-  
+  .modal-container {
+    margin: 0 auto;
+    width: 300px;
+  }
+  .modal-form label {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .modal-container {
+    margin: 0 auto;
+    width: 270px;
+  }
+  .modal-form label {
+    font-size: 20px;
+  }
 }

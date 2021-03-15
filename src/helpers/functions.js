@@ -9,6 +9,7 @@ export const chequeType = (value) => {
   }
   return message
 }
+
 export const chequeStatus = (pays, sum) => {
   const paidSum = paysSum(pays)
   let message = ''
@@ -38,6 +39,7 @@ export const productCount = (positions) => {
   }
   return count
 }
+
 export const productsName = (positions) => {
   const productsArray = []
   for (let i = 0; i < positions.length; i++) {
@@ -45,6 +47,7 @@ export const productsName = (positions) => {
   }
   return productsArray.join(', ')
 }
+
 export const dateFormat = (date) => {
   const options = {
     year: 'numeric',
@@ -56,6 +59,11 @@ export const dateFormat = (date) => {
   }
   const d = new Date(date)
   return d.toLocaleDateString('ru-RU', options)
+}
+
+export const toLocaleCurrency = value => {
+  const rubs = (value / 100).toFixed(2)
+  return Intl.NumberFormat('ru-RU', {style: 'currency', currency: 'RUB'}).format(rubs)
 }
 
 export const createNewCheckArray = (data, products) => {

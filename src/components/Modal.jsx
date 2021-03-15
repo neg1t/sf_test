@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import products from '../data/product'
 import { connect } from 'react-redux'
-import { createNewCheckArray } from '../helpers/functions'
+import { createNewCheckArray, toLocaleCurrency } from '../helpers/functions'
 import { addNewCheck } from '../redux/reducers/cheques-reducers'
 import './Modal.css'
 
@@ -11,7 +11,7 @@ let Modal = ({
   addNewCheck
 }) => {
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const onSubmit = (data, e) => {
     const newData = createNewCheckArray(data, products)
@@ -23,7 +23,6 @@ let Modal = ({
     update(false)
   }
 
-
   return (
     <section className={`fixed-overlay fixed-overlay_modal ${active ? 'modal_active' : ''}`}>
       <div className='modal'>
@@ -33,36 +32,37 @@ let Modal = ({
           </div>
           <div className="modal__main">
             <form action="" method='POST' onSubmit={handleSubmit(onSubmit)} className='modal-form'>
-              <label htmlFor="cardsum">Money on card</label>
+              <label htmlFor="cardsum">Денег на карте (в копейках)</label>
+              {errors.cardsum && <p className='modal-form__errors'>Это поле обязательно</p>}
               <input className="form-styling" type="number" name="cardsum" ref={register({ required: true })} />
 
-              <label htmlFor="product">Chose product</label>
+              <label htmlFor="product">Выберите продукт</label>
+              {errors.product && <p className='modal-form__errors'>Это поле обязательно</p>}
               <select name='product' className='selector' ref={register({ required: true })}>
-                <option hidden value='default'>Products...</option>
+                <option hidden value='' >Продукты...</option>
                 {products.map(i => (
-                  <option key={i.id} value={i.id}>{i.name} ({i.price})</option>
+                  <option key={i.id} value={i.id}>{i.name} ({toLocaleCurrency(i.price)})</option>
                 ))}
               </select>
 
-              <label htmlFor="count">Count</label>
+              <label htmlFor="count">Количество продуктов</label>
+              {errors.count && <p className='modal-form__errors'>Это поле обязательно</p>}
               <input className="form-styling" type="number" name="count" ref={register({ required: true })} />
 
               <div className='modal-form__buttons'>
-                <button className='cancel-button' type='button' onClick={closeHandler}>Cancel</button>
-                <button className='buy-button' type='submit'>Buy</button>
+                <button className='cancel-button' type='button' onClick={closeHandler}>Отменить</button>
+                <button className='buy-button' type='submit'>Купить</button>
               </div>
             </form>
           </div>
         </div>
       </div>
     </section>
-
   )
 }
 
 const mapStateToProps = state => {
   return {}
 }
-
 
 export default connect(mapStateToProps, { addNewCheck })(Modal)

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { connect } from 'react-redux'
 import { getCheques, deleteOneCheque, changeDeletingStatus } from '../redux/reducers/cheques-reducers'
-import { chequeType, chequeStatus, paysSum, productCount, productsName, dateFormat } from '../helpers/functions'
+import { chequeType, chequeStatus, paysSum, productCount, productsName, dateFormat, toLocaleCurrency } from '../helpers/functions'
 import Modal from './Modal'
 import './Table.css'
 
@@ -70,8 +70,8 @@ let Table = ({
               <td>{i.kioskName}</td>
               <td>{chequeType(i.chequeType)}</td>
               <td>{chequeStatus(i.pays, i.sum)}</td>
-              <td>{paysSum(i.pays)}</td>
-              <td>{i.sum}</td>
+              <td>{toLocaleCurrency(paysSum(i.pays))}</td>
+              <td>{toLocaleCurrency(i.sum)}</td>
               <td>{productCount(i.positions)}</td>
               <td>{productsName(i.positions)}</td>
             </tr>
@@ -81,13 +81,12 @@ let Table = ({
 
       <div className='main-table__buttons'>
         <button className='main-table__cancel-button' onClick={deleteHandler}>{deleteButton.text}</button>
-        <button className='main-table__create-button' onClick={createHandler}>Create</button>
+        <button className='main-table__create-button' onClick={createHandler}>Добавить</button>
       </div>
       {createActive && <Modal active={createActive} update={updateModalStatus} />}
     </div>
   )
 }
-
 
 const mapStateToProps = state => {
   return {

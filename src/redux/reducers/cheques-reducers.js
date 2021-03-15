@@ -35,9 +35,7 @@ const chequesReducers = (state = initialState, action) => {
         cheques: [...state.cheques, ...action.cheque]
       }
     }
-
     default: return state
-
   }
 }
 
@@ -65,6 +63,5 @@ export const changeDeletingStatus = () => dispatch => {
 export const addNewCheck = (cheque) => dispatch => {
   dispatch(addCheck(cheque))
 }
-
 
 export default chequesReducers

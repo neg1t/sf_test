@@ -1,3 +1,21 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto.woff2') format('woff2'), url('../fonts/Roboto.woff') format('woff'), url('../fonts/Roboto.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Bold';
+  src: url('../fonts/Robotobold.woff2') format('woff2'), url('../fonts/Robotobold.woff') format('woff'), url('../fonts/Robotobold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .shadow {
   background-color: rgb(143, 143, 143) !important;
 }
@@ -16,11 +34,12 @@
   justify-content: center;
 }
 
-
-
 .table-row_active:hover td {
   cursor: pointer;
   background: rgb(255, 58, 58) !important;
 }
-
-
+@media screen and (max-width:400px) {
+  header h1 {
+    font-size: 24px;
+  }
+}
