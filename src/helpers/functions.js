@@ -10,17 +10,17 @@ export const chequeType = (value) => {
   return message
 }
 
-export const chequeStatus = (pays, sum) => {
+export const chequeStatus = (pays, sum, chequeType) => {
   const paidSum = paysSum(pays)
   let message = ''
 
-  if (paidSum === sum) {
+  if(chequeType === 1) {
+    message = 'Нет оплаты'
+  } else if (paidSum === sum) {
     message = 'Оплачено'
   } else if (paidSum < sum) {
     message = 'Недоплата'
-  } else {
-    message = 'Нет оплаты'
-  }
+  } 
   return message
 }
 
@@ -70,17 +70,21 @@ export const createNewCheckArray = (data, products) => {
   const cardBalance = Number(data.cardsum)
   const productId = Number(data.product)
   const productsCount = Number(data.count)
-  const date = new Date()
+  const chequeType = Number(data.type)
+  const date = data.date
+  const kiosk = `Киоск № ${data.kiosk}`
   const product = products.find(i => i.id === productId)
   const sumToPay = product.price * productsCount
   const cardBalanceAfterPay = cardBalance - sumToPay
   let pays = 0
   
-  if (cardBalanceAfterPay < 0) {
+  if (chequeType === 1) {
+    pays = 0
+  } else if (cardBalanceAfterPay < 0) {
     pays = cardBalance
   } else if (cardBalanceAfterPay >= 0) {
     pays = sumToPay
-  }
+  } 
 
   const newData = [{
     "pays": [{
@@ -94,9 +98,9 @@ export const createNewCheckArray = (data, products) => {
     }],
     "uid": uuidv4(),
     "sum": sumToPay,
-    "chequeType": 0,
+    "chequeType": chequeType,
     "dateReg": date,
-    "kioskName": "Киоск № 11"
+    "kioskName": kiosk
   }]
 
   return newData

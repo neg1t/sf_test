@@ -5,7 +5,8 @@ const ADD_CHECK = 'ADD_CHECK'
 
 const initialState = {
   cheques: [],
-  deletingActivate: false
+  deletingActivate: false,
+  firstFetching: true
 }
 
 const chequesReducers = (state = initialState, action) => {
@@ -13,7 +14,8 @@ const chequesReducers = (state = initialState, action) => {
     case FETCH_CHEQUES: {
       return {
         ...state,
-        cheques: [...state.cheques, ...action.data]
+        cheques: [...state.cheques, ...action.data],
+        firstFetching: false
       }
     }
     case DELETE_CHEQUE: {

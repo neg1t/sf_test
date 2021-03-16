@@ -18,6 +18,7 @@ let Modal = ({
     addNewCheck(newData)
     e.target.reset()
     closeHandler()
+    // console.log(data)
   }
   const closeHandler = () => {
     update(false)
@@ -36,10 +37,26 @@ let Modal = ({
               {errors.cardsum && <p className='modal-form__errors'>Это поле обязательно</p>}
               <input className="form-styling" type="number" name="cardsum" ref={register({ required: true })} />
 
+              <label htmlFor="date">Время покупки</label>
+              {errors.date && <p className='modal-form__errors'>Это поле обязательно</p>}
+              <input type="datetime-local" name="date" ref={register({ required: true })}/>
+              
+              <label htmlFor="type">Тип чека</label>
+              {errors.type && <p className='modal-form__errors'>Это поле обязательно</p>}
+              <select name='type' className='selector' ref={register({ required: true })}>
+                <option hidden value="">Тип...</option>
+                <option value="0">Продажа</option>
+                <option value="1">Возврат</option>
+              </select>
+
+              <label htmlFor="kiosk">Номер киоска</label>
+              {errors.kiosk && <p className='modal-form__errors'>Это поле обязательно</p>}
+              <input className="form-styling" type="number" name="kiosk" ref={register({ required: true })} />
+
               <label htmlFor="product">Выберите продукт</label>
               {errors.product && <p className='modal-form__errors'>Это поле обязательно</p>}
               <select name='product' className='selector' ref={register({ required: true })}>
-                <option hidden value='' >Продукты...</option>
+                <option hidden value=''>Продукты...</option>
                 {products.map(i => (
                   <option key={i.id} value={i.id}>{i.name} ({toLocaleCurrency(i.price)})</option>
                 ))}

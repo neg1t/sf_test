@@ -10,17 +10,18 @@ let Table = ({
   getCheques,
   deleteOneCheque,
   changeDeletingStatus,
-  deletingStatus
+  deletingStatus,
+  firstFetching
 }) => {
 
   const [deleteButton, setDeleteButton] = useState({ active: false, text: 'Удалить' })
   const [createActive, setCreateActive] = useState(false)
 
   useEffect(() => {
-    if (cheques.length === 0) {
+    if (firstFetching) {
       getCheques()
     }
-  }, [cheques, getCheques])
+  }, [firstFetching, getCheques])
 
   const deleteHandler = () => {
     changeDeletingStatus()
@@ -45,53 +46,58 @@ let Table = ({
   }
 
   return (
-    <div className='main-table'>
-      <table>
-        <thead>
-          <tr>
-            <th>Дата покупки</th>
-            <th>Киоск</th>
-            <th>Тип</th>
-            <th>Статус оплаты</th>
-            <th>Оплата</th>
-            <th>Сумма</th>
-            <th>Количество товаров</th>
-            <th>Товары</th>
-          </tr>
-        </thead>
-        <tbody>
-          {cheques.map(i => (
-            <tr
-              key={i.uid}
-              onClick={() => deleteRow(i.uid)}
-              className={deletingStatus ? 'table-row_active' : ''}
-            >
-              <td>{dateFormat(i.dateReg)}</td>
-              <td>{i.kioskName}</td>
-              <td>{chequeType(i.chequeType)}</td>
-              <td>{chequeStatus(i.pays, i.sum)}</td>
-              <td>{toLocaleCurrency(paysSum(i.pays))}</td>
-              <td>{toLocaleCurrency(i.sum)}</td>
-              <td>{productCount(i.positions)}</td>
-              <td>{productsName(i.positions)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className='table-container'>
+      <div className='main-table'>
+        <div className='main-table__table'>
+          <table>
+            <thead>
+              <tr>
+                <th>Дата покупки</th>
+                <th>Киоск</th>
+                <th>Тип</th>
+                <th>Статус оплаты</th>
+                <th>Оплата</th>
+                <th>Сумма</th>
+                <th>Количество товаров</th>
+                <th>Товары</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cheques.map(i => (
+                <tr
+                  key={i.uid}
+                  onClick={() => deleteRow(i.uid)}
+                  className={deletingStatus ? 'table-row_active' : ''}
+                >
+                  <td>{dateFormat(i.dateReg)}</td>
+                  <td>{i.kioskName}</td>
+                  <td>{chequeType(i.chequeType)}</td>
+                  <td>{chequeStatus(i.pays, i.sum, i.chequeType)}</td>
+                  <td>{toLocaleCurrency(paysSum(i.pays))}</td>
+                  <td>{toLocaleCurrency(i.sum)}</td>
+                  <td>{productCount(i.positions)}</td>
+                  <td>{productsName(i.positions)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <div className='main-table__buttons'>
         <button className='main-table__cancel-button' onClick={deleteHandler}>{deleteButton.text}</button>
         <button className='main-table__create-button' onClick={createHandler}>Добавить</button>
       </div>
       {createActive && <Modal active={createActive} update={updateModalStatus} />}
-    </div>
+      </div>
   )
 }
 
 const mapStateToProps = state => {
   return {
     cheques: state.chequesReducers.cheques,
-    deletingStatus: state.chequesReducers.deletingActivate
+    deletingStatus: state.chequesReducers.deletingActivate,
+    firstFetching: state.chequesReducers.firstFetching
   }
 }
 const mapDispatchToProps = { getCheques, deleteOneCheque, changeDeletingStatus }

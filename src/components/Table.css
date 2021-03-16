@@ -109,6 +109,26 @@ tr td:last-child {
 }
 @media screen and (max-width:850px) {
   .main-table {
-    overflow-y: scroll;
+    width: 700px; 
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    overflow-x: scroll;
+  }
+  .main-table__table {
+    min-width: 0;
+  }
+}
+@media screen and (max-width:720px) {
+  .main-table {
+    width: 500px; 
+    
+  }
+}
+@media screen and (max-width:520px) {
+  .main-table {
+    width: 310px; 
+    
   }
 }
